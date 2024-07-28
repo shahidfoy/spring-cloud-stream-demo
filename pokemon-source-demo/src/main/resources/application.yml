@@ -1,0 +1,22 @@
+spring.application.name: pokemon-source-demo
+server.port: 9002
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost/captured_pokemon_db
+    username: ${POSTGRES_USERNAME:postgres}
+    password: ${POSTGRES_PASSWORD:postgres}
+  jpa:
+    generate-ddl: true
+    show-sql: false
+  cloud:
+    stream:
+      bindings:
+        publishNewPokemonEvent-out-0:
+          destination: PokemonProcessing # exchange name
+          group: homingpokemon
+  rabbitmq:
+    host: ${RMQ_HOSTNAME:localhost}
+    port: ${RMQ_PORT:5672}
+    username: ${RMQ_USERNAME:guest}
+    password: ${RMQ_PASSWORD:guest}

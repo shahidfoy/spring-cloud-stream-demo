@@ -1,0 +1,29 @@
+spring.application.name: pokemon-consumer-demo
+server.port: 9004
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost/home_pokemon_db
+    username: ${POSTGRES_USERNAME:postgres}
+    password: ${POSTGRES_PASSWORD:postgres}
+  jpa:
+    generate-ddl: true
+    show-sql: false
+  cloud:
+    stream:
+      bindings:
+        pokemonHomingArrangements-in-0:
+          destination: PokemonHoming # exchange name
+          group: homingpokemon
+          consumer:
+            max-attempts: 1
+    rabbit:
+      bindings:
+        consumer:
+          autoBindDlq: true
+
+  rabbitmq:
+    host: ${RMQ_HOSTNAME:localhost}
+    port: ${RMQ_PORT:5672}
+    username: ${RMQ_USERNAME:guest}
+    password: ${RMQ_PASSWORD:guest}

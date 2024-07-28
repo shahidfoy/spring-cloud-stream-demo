@@ -1,0 +1,25 @@
+spring.application.name: pokemon-processor-demo
+server.port: 9003
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost/processed_pokemon_db
+    username: ${POSTGRES_USERNAME:postgres}
+    password: ${POSTGRES_PASSWORD:postgres}
+  jpa:
+    generate-ddl: true
+    show-sql: false
+  cloud:
+    stream:
+      bindings:
+        homingPokemonProcess-in-0:
+          destination: PokemonProcessing # exchange name
+          group: homingpokemon
+        homingPokemonProcess-out-0:
+          destination: PokemonHoming # exchange name
+          group: homingpokemon
+  rabbitmq:
+    host: ${RMQ_HOSTNAME:localhost}
+    port: ${RMQ_PORT:5672}
+    username: ${RMQ_USERNAME:guest}
+    password: ${RMQ_PASSWORD:guest}

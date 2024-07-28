@@ -6,6 +6,9 @@ Spring Cloud Stream is a nice tool we can use to build event-driven microservice
 - Processor: Transforms and/or filters incoming data streams. Can perform operations like aggregation, filtering, and mapping of data. 
 - Consumer: The final destination of the data stream usally known as the sink. Consumers can perform actions like updating databases, sending emails, or calling other services.
 
+Spring Cloud Stream: https://spring.io/projects/spring-cloud-stream \
+Spring Cloud Stream Reference Documentation: https://docs.spring.io/spring-cloud-stream/docs/current/reference/html/
+
 ## Requirements
 - Java 17
 - RabbitMQ (https://www.rabbitmq.com/docs/install-windows#dependencies)
